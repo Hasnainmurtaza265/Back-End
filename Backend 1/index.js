@@ -1,13 +1,15 @@
 const express = require('express');
-const app = express()
+const app = express();
 
-
-// Routes
-app.get('/',(req,res)=>{
-res.send("Hello World")
+app.get("/",(req,res)=>{
+res.send("Hello From Server")
 })
-// Running Server
-app.listen(4000, () => {
-    console.log("Server is running");
 
+app.get("/login",(req,res)=>{
+res.send("Login successful")
+})
+
+
+app.listen(4000, () => {
+    console.log("server is running");
 })
