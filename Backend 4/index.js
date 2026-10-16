@@ -46,6 +46,54 @@ app.get("/product/:id", (req, res) => {
 
 
 
+
+// API Practice
+
+const products = [
+    {
+        id: 1,
+        name: "Laptop",
+        price: 20000
+    }, {
+        id: 2,
+        name: "Mobile",
+        price: 10000
+    }, {
+        id: 3,
+        name: "Headphone",
+        price: 3000
+    }
+
+]
+
+app.get('/products', (req, res) => {
+    res.send(products)
+})
+
+app.get('/products/:id', (req, res) => {
+    const id = Number(req.params.id);
+    const product = products.find((item) => {
+        return item.id === id
+
+    }
+    )
+
+    if (!product) {
+        return res.status(404).json({
+            message:"product nor found"
+        })
+    }
+    res.send(product)
+    // res.send(products.id)
+
+
+})
+
+
+
+
+
+
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
 
