@@ -66,9 +66,9 @@ const products = [
 
 ]
 
-app.get('/products', (req, res) => {
-    res.send(products)
-})
+// app.get('/products', (req, res) => {
+//     res.send(products)
+// })
 
 app.get('/products/:id', (req, res) => {
     const id = Number(req.params.id);
@@ -80,7 +80,7 @@ app.get('/products/:id', (req, res) => {
 
     if (!product) {
         return res.status(404).json({
-            message:"product nor found"
+            message: "product nor found"
         })
     }
     res.send(product)
@@ -88,7 +88,23 @@ app.get('/products/:id', (req, res) => {
 
 
 })
+app.post('/products', (req, res) => {
+    const { name, price } = req.body;
 
+    const newProduct = {
+        id: products.length + 1,
+        name: name,
+        price: price
+    }
+
+    products.push(newProduct);
+    console.log('product added!');
+    res.status(201).json({
+        message: 'product added successfully',
+        product: newProduct
+    })
+
+})
 
 
 
