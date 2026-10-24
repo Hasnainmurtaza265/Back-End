@@ -1,8 +1,10 @@
 const express = require('express');
+const productRoutes=require('./routes/productRoutes');  
 const app = express();
 require('dotenv').config();
 const PORT = process.env.PORT;
 app.use(express.json());
+app.use(productRoutes)
 
 
 
@@ -71,19 +73,7 @@ const products = [
 // })
 
 app.get('/products/:id', (req, res) => {
-    const id = Number(req.params.id);
-    const product = products.find((item) => {
-        return item.id === id
-
-    }
-    )
-
-    if (!product) {
-        return res.status(404).json({
-            message: "product nor found"
-        })
-    }
-    res.send(product)
+    
     // res.send(products.id)
 
 
